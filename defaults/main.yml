@@ -15,4 +15,5 @@ acme_path_key: '/etc/ssl/{{ acme_domain }}/{{ acme_domain }}.key'
 acme_cmd_reload: 'service httpd force-reload'
 
 acme_staging: no
+acme_install_cronjob: yes
 acme_install_options:
