@@ -39,8 +39,8 @@
   args:
     creates: /root/.acme.sh/{{ acme_domain }}/ca.cer
     warn: false
-  register: issue
-  changed_when: "'skipped' not in issue.stdout"
+  register: acme__r_issue
+  changed_when: "'skipped' not in acme__r_issue.stdout"
 
 - name: Install certificate
   shell: |
@@ -52,7 +52,6 @@
       {{ "--reloadcmd " + acme_cmd_reload|quote if acme_cmd_reload }}
   args:
     warn: false
-  register: install
   changed_when: false
   when:
     - acme_path_key | default(None)
