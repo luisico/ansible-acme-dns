@@ -13,3 +13,5 @@ acme_path_fullchain: '/etc/ssl/{{ acme_domain }}/fullchain.cer'
 acme_path_key: '/etc/ssl/{{ acme_domain }}/{{ acme_domain }}.key'
 
 acme_cmd_reload: 'service httpd force-reload'
+
+acme_staging: no
