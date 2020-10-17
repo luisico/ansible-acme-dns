@@ -1,19 +1,22 @@
 ---
+# acme.sh install options
 acme_version: '2.8.7'
-acme_dns_api: ''
-acme_domain: '{{ ansible_fqdn }}'
+acme_install_cronjob: yes
+acme_install_options:
 
+# Certificate issue
+acme_domain: '{{ ansible_fqdn }}'
+acme_staging: no
+
+# DNS01 options
+acme_dns_api: ''
 acme_infoblox_host: ''
 acme_infoblox_user: ''
 acme_infoblox_pass: ''
 acme_infoblox_view: ''
 
+# Certificate installation
 acme_path_cert:
 acme_path_fullchain:
 acme_path_key:
-
 acme_cmd_reload:
-
-acme_staging: no
-acme_install_cronjob: yes
-acme_install_options:
