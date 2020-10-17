@@ -19,7 +19,7 @@
       {{ acme_install_options }}
   args:
     chdir: /opt/acme/src
-    creates: /root/.acme.sh
+    creates: /root/.acme.sh/acme.sh
     warn: false
 
 - name: Configure DNS {{ acme_dns_api }}
