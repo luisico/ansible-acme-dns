@@ -11,10 +11,9 @@
     dest: /opt/acme/src
     version: '{{ acme_version }}'
 
+# https://github.com/acmesh-official/acme.sh/wiki/How-to-install#4-advanced-installation
 - name: Install acme
-  shell: |
-    # https://github.com/acmesh-official/acme.sh/wiki/How-to-install#4-advanced-installation
-    ./acme.sh --install
+  shell: ./acme.sh --install
   args:
     chdir: /opt/acme/src
     creates: /root/.acme.sh
