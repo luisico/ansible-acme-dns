@@ -12,7 +12,7 @@ acme_path_cert:
 acme_path_fullchain:
 acme_path_key:
 
-acme_cmd_reload: 'service httpd force-reload'
+acme_cmd_reload:
 
 acme_staging: no
 acme_install_cronjob: yes

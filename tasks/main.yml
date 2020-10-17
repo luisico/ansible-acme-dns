@@ -49,7 +49,7 @@
       --key-file {{ acme_path_key }} \
       {{ "--cert-file " + acme_path_cert if acme_path_cert }} \
       {{ "--fullchain-file " + acme_path_fullchain if acme_path_fullchain }} \
-      --reloadcmd "{{ acme_cmd_reload }}"
+      {{ "--reloadcmd " + acme_cmd_reload|quote if acme_cmd_reload }}
   args:
     warn: false
   register: install
