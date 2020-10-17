@@ -13,7 +13,8 @@
 
 # https://github.com/acmesh-official/acme.sh/wiki/How-to-install#4-advanced-installation
 - name: Install acme
-  shell: ./acme.sh --install
+  shell: |
+    ./acme.sh --install {{ acme_install_options }}
   args:
     chdir: /opt/acme/src
     creates: /root/.acme.sh
