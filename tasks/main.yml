@@ -46,11 +46,14 @@
   shell: |
     /root/.acme.sh/acme.sh \
       --install-cert -d {{ acme_domain }} \
-      --cert-file {{ acme_path_cert }}  \
-      --key-file {{ acme_path_key }}  \
-      --fullchain-file {{ acme_path_fullchain }} \
+      --key-file {{ acme_path_key }} \
+      {{ "--cert-file " + acme_path_cert if acme_path_cert }} \
+      {{ "--fullchain-file " + acme_path_fullchain if acme_path_fullchain }} \
       --reloadcmd "{{ acme_cmd_reload }}"
   args:
     warn: false
   register: install
   changed_when: false
+  when:
+    - acme_path_key | default(None)
+    - (acme_path_cert | default(None)) or (acme_path_fullchain | default(None))
