@@ -54,10 +54,3 @@
     warn: false
   register: install
   changed_when: false
-
-- name: Schedule renewal cron
-  cron:
-    name: acme-renewal
-    minute: '0'
-    hour: '10'
-    job: '"/root/.acme.sh"/acme.sh --cron --home "/root/.acme.sh" > /var/log/acme.log'
