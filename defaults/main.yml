@@ -1,0 +1,15 @@
+---
+acme_version: '2.8.7'
+acme_dns_api: ''
+acme_domain: '{{ ansible_hostname }}'
+
+acme_infoblox_host: ''
+acme_infoblox_user: ''
+acme_infoblox_pass: ''
+acme_infoblox_view: ''
+
+acme_path_cert: '/etc/ssl/{{ acme_domain }}/{{ acme_domain }}.cer'
+acme_path_fullchain: '/etc/ssl/{{ acme_domain }}/fullchain.cer'
+acme_path_key: '/etc/ssl/{{ acme_domain }}/{{ acme_domain }}.key'
+
+acme_cmd_reload: 'service httpd force-reload'

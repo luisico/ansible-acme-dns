@@ -1,0 +1,56 @@
+---
+- name: Install acme dependencies
+  yum:
+    name:
+      - socat
+      - wget
+
+- name: Clone acme
+  git:
+    repo: https://github.com/acmesh-official/acme.sh.git
+    dest: /opt/acme/src
+    version: '{{ acme_version }}'
+
+- name: Install acme
+  shell: |
+    # https://github.com/acmesh-official/acme.sh/wiki/How-to-install#4-advanced-installation
+    ./acme.sh --install
+  args:
+    chdir: /opt/acme/src
+    creates: /root/.acme.sh
+    warn: false
+
+- name: Configure DNS {{ acme_dns_api }}
+  blockinfile:
+    path: /root/.acme.sh/account.conf
+    marker: "# {mark} {{ acme_dns_api }}"
+    block: "{{ lookup('template', './templates/dns_' + acme_dns_api + '.conf.j2') }}"
+
+- name: Issue certificate
+  shell: |
+    /root/.acme.sh/acme.sh --issue --dns dns_{{ acme_dns_api }} -d {{ acme_domain }}
+  args:
+    creates: /root/.acme.sh/{{ acme_domain }}/ca.cer
+    warn: false
+  register: issue
+  changed_when: "'skipped' not in issue.stdout"
+
+- name: Install certificate
+  shell: |
+    /root/.acme.sh/acme.sh \
+      --install-cert -d {{ acme_domain }} \
+      --cert-file {{ acme_path_cert }}  \
+      --key-file {{ acme_path_key }}  \
+      --fullchain-file {{ acme_path_fullchain }} \
+      --reloadcmd "{{ acme_cmd_reload }}"
+  args:
+    warn: false
+  register: install
+  changed_when: false
+
+- name: Schedule renewal cron
+  cron:
+    name: acme-renewal
+    minute: '0'
+    hour: '10'
+    job: '"/root/.acme.sh"/acme.sh --cron --home "/root/.acme.sh" > /var/log/acme.log'
