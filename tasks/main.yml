@@ -52,7 +52,9 @@
       mode: '0700'
     - path: '{{ acme_path_cert }}'
     - path: '{{ acme_path_fullchain }}'
-  when: item.path | default(None)
+  when:
+    - acme__r_issue.changed
+    - item.path | default(None)
 
 - name: Install certificate
   shell: |
@@ -67,5 +69,6 @@
   register: acme__r_copy
   changed_when: "'Installing key to' in acme__r_copy.stdout"
   when:
+    - acme__r_issue.changed
     - acme_path_key | default(None)
     - (acme_path_cert | default(None)) or (acme_path_fullchain | default(None))
