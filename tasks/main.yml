@@ -64,7 +64,8 @@
       {{ "--reloadcmd " + acme_cmd_reload|quote if acme_cmd_reload }}
   args:
     warn: false
-  changed_when: false
+  register: acme__r_copy
+  changed_when: "'Installing key to' in acme__r_copy.stdout"
   when:
     - acme_path_key | default(None)
     - (acme_path_cert | default(None)) or (acme_path_fullchain | default(None))
