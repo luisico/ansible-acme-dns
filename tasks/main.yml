@@ -34,8 +34,7 @@
       --issue \
       --dns dns_{{ acme_dns_api }} \
       -d {{ acme_domain }} \
-      {{ "--staging" if acme_staging }}
-
+      {{ '--staging' if acme_staging }}
   args:
     creates: /root/.acme.sh/{{ acme_domain }}/ca.cer
     warn: false
