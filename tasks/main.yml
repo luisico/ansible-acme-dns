@@ -42,6 +42,18 @@
   register: acme__r_issue
   changed_when: "'skipped' not in acme__r_issue.stdout"
 
+- name: Ensure directories are present for certificates
+  file:
+    path: '{{ item.path | dirname }}'
+    state: directory
+    mode: '{{ item.mode | default("0752") }}'
+  loop:
+    - path: '{{ acme_path_key }}'
+      mode: '0700'
+    - path: '{{ acme_path_cert }}'
+    - path: '{{ acme_path_fullchain }}'
+  when: item.path | default(None)
+
 - name: Install certificate
   shell: |
     /root/.acme.sh/acme.sh \
