@@ -27,6 +27,7 @@
     path: /root/.acme.sh/account.conf
     marker: "# {mark} {{ acme_dns_api }}"
     block: "{{ lookup('template', './templates/dns_' + acme_dns_api + '.conf.j2') }}"
+  no_log: true
 
 - name: Issue certificate
   shell: |
