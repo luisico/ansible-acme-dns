@@ -15,8 +15,7 @@
 - name: Install acme
   shell: |
     ./acme.sh --install \
-      {{ "--nocron" if not acme_install_cronjob }} \
-      {{ acme_install_options }}
+      {{ "--nocron" if not acme_install_cronjob }} {{ acme_install_options }}
   args:
     chdir: /opt/acme/src
     creates: /root/.acme.sh/acme.sh
