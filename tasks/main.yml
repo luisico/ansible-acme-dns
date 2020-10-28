@@ -4,6 +4,7 @@
     name:
       - socat
       - wget
+      - git
 
 - name: Clone acme
   git:
