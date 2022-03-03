@@ -1,6 +1,6 @@
 galaxy_info:
-  author: Garth Kerr
-  description: Install acme.sh and issue certificate with DNS challenge
+  author: Luis Gracia and Garth Kerr
+  description: Install acme.sh and issue certificate with DNS01 challenge
   license: MIT
   min_ansible_version: 2.9
   platforms:
