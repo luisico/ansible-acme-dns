@@ -1,8 +1,21 @@
-# Ansible Role for acme.sh
+Acme
+====
+Install acme.sh and issue certificate with DNS01 challenge.
 
-Install acme.sh and issue certificate with DNS challenge.
+Requirements
+------------
+See `meta/main.yml`.
 
-#### Example Playbook
+Role Variables
+--------------
+See `defaults/main.yml`.
+
+Dependencies
+------------
+None.
+
+Example Playbook
+----------------
 
 Requires `root` if not using `become` by default.
 
@@ -14,7 +27,7 @@ Requires `root` if not using `become` by default.
       become_user: root
 ```
 
-#### Example Variables
+### Example Variables
 
 ```
 acme_dns_api: 'infoblox'
@@ -29,3 +42,17 @@ acme_path_cert: '/path/to/cert/file'
 acme_path_fullchain: '/path/to/fullchain/cert/file'
 acme_path_key: 'path/to/key/file'
 ```
+
+License
+-------
+Released under the [MIT license](https://opensource.org/licenses/MIT).
+
+Author Information
+------------------
+Luis Gracia while at [Rockefeller University](http://www.rockefeller.edu):
+- lgracia [at] rockefeller.edu
+- GitHub at [luisico](https://github.com/luisico)
+- Galaxy at [luisico](https://galaxy.ansible.com/luisico)
+
+Garth Kerr while at [Rockefeller University](http://www.rockefeller.edu):
+- GitHub at [garthkerr](https://github.com/garthkerr)

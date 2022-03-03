@@ -41,7 +41,7 @@
   register: acme__r_issue
   changed_when: "'skipped' not in acme__r_issue.stdout"
 
-- name: Ensure directories are present for certificates
+- name: Ensure directories are present for certificates   # noqa no-handler
   file:
     path: '{{ item.path | dirname }}'
     state: directory
@@ -55,7 +55,7 @@
     - acme__r_issue.changed
     - item.path | default(None)
 
-- name: Install certificate
+- name: Install certificate   # noqa no-handler
   shell: |
     /root/.acme.sh/acme.sh \
       --install-cert -d {{ acme_domain }} \
