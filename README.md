@@ -43,6 +43,10 @@ acme_path_fullchain: '/path/to/fullchain/cert/file'
 acme_path_key: 'path/to/key/file'
 ```
 
+License
+-------
+Released under the [MIT license](https://opensource.org/licenses/MIT).
+
 Author Information
 ------------------
 Luis Gracia while at [Rockefeller University](http://www.rockefeller.edu):
