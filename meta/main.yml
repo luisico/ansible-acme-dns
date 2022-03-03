@@ -1,4 +1,5 @@
 galaxy_info:
+  role_name: acme_dns
   author: Luis Gracia and Garth Kerr
   description: Install acme.sh and issue certificate with DNS01 challenge
   license: MIT
